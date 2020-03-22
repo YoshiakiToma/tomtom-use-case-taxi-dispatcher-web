@@ -75,10 +75,9 @@
       <div id="modal-content"></div>
     </div>
     <script>
-    var taxiCoordinates = [ [ 52.373627, 4.902642 ], [ 52.3659, 4.927198 ],
-      [ 52.347878, 4.893488 ], [ 52.349447, 4.858433 ] ];
+    var taxiCoordinates = [ [ -22.732825, -50.389700 ] ];
 
-    var passengerInitCoordinates = [ 52.360306, 4.876935 ];
+    var passengerInitCoordinates = [ -22.652256, -50.421462 ];
     var passengerMarker;
 
     var routes = [];
@@ -94,10 +93,10 @@
     var grayedOutDivColor = '#979797';
 
     var map = tomtom.L.map('map', {
-      key: '<your-api-key>',
+      key: 'tB0cZPFGGT0J0UfBSxhbx2RAKTiGMDTZ',
       basePath: 'sdk',
       center: passengerInitCoordinates,
-      zoom: 14,
+      zoom: 11,
       traffic: true
     });
 
@@ -111,15 +110,6 @@
     var carIcons = [ tomtom.L.icon({
       iconUrl: 'img/cab1.png',
       iconSize: [ 55, 55 ]
-    }), tomtom.L.icon({
-      iconUrl: 'img/cab2.png',
-      iconSize: [ 55, 55 ]
-    }), tomtom.L.icon({
-      iconUrl: 'img/cab3.png',
-      iconSize: [ 55, 55 ]
-    }), tomtom.L.icon({
-      iconUrl: 'img/cab4.png',
-      iconSize: [ 55, 55 ]
     }) ];
 
     var modal = document.getElementById('modal');
@@ -130,18 +120,6 @@
         {
           name: 'CAR #1',
           color: '#00e2ff'
-        },
-        {
-          name: 'CAR #2',
-          color: '#0c95e8'
-        },
-        {
-          name: 'CAR #3',
-          color: '#0d64ff'
-        },
-        {
-          name: 'CAR #4',
-          color: '#0ce8c5'
         }
       ];
     }
@@ -304,7 +282,7 @@
       modifyFastestRouteColor(travelTimeInSecondsArray);
       updateRouteLegend(travelTimeInSecondsArray, lengthInMetersArray, trafficDelayInSecondsArray);
       drawAllRoutes();
-      displayModal();
+      // displayModal();
     }
 
     function callMatrix() {
@@ -358,11 +336,11 @@
       closeOnMapClick: false
     }).addTo(map).addContent(document.getElementById('labels-container'));
 
-    map.on('click', function(event) {
-      var position = event.latlng;
-      tomtom.reverseGeocode().position(position)
-        .go().then(function(results) {drawPassengerMarkerOnMap(results)});
-    });
+    // map.on('click', function(event) {
+    //   var position = event.latlng;
+    //   tomtom.reverseGeocode().position(position)
+    //     .go().then(function(results) {drawPassengerMarkerOnMap(results)});
+    // });
 
     modal.addEventListener('click', function() {
       modal.style.display = 'none';
